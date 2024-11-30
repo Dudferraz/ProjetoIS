@@ -1,0 +1,10 @@
+C:\IPL\3ano1S\IS\projeto\SolutionSomiod\Lighting\bin\Debug\Lighting.exe.config
+C:\IPL\3ano1S\IS\projeto\SolutionSomiod\Lighting\bin\Debug\Lighting.exe
+C:\IPL\3ano1S\IS\projeto\SolutionSomiod\Lighting\bin\Debug\Lighting.pdb
+C:\IPL\3ano1S\IS\projeto\SolutionSomiod\Lighting\obj\Debug\Lighting.csproj.AssemblyReference.cache
+C:\IPL\3ano1S\IS\projeto\SolutionSomiod\Lighting\obj\Debug\Lighting.Form_Lighting.resources
+C:\IPL\3ano1S\IS\projeto\SolutionSomiod\Lighting\obj\Debug\Lighting.Properties.Resources.resources
+C:\IPL\3ano1S\IS\projeto\SolutionSomiod\Lighting\obj\Debug\Lighting.csproj.GenerateResource.cache
+C:\IPL\3ano1S\IS\projeto\SolutionSomiod\Lighting\obj\Debug\Lighting.csproj.CoreCompileInputs.cache
+C:\IPL\3ano1S\IS\projeto\SolutionSomiod\Lighting\obj\Debug\Lighting.exe
+C:\IPL\3ano1S\IS\projeto\SolutionSomiod\Lighting\obj\Debug\Lighting.pdb

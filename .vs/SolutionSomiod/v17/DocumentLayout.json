@@ -1,12 +1,70 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\IPL\\3ano1S\\IS\\projeto\\SolutionSomiod\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F43F68DD-DD40-40E2-B8C7-427443B4659E}|Lighting\\Lighting.csproj|c:\\ipl\\3ano1s\\is\\projeto\\solutionsomiod\\lighting\\properties\\resources.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F43F68DD-DD40-40E2-B8C7-427443B4659E}|Lighting\\Lighting.csproj|solutionrelative:lighting\\properties\\resources.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F43F68DD-DD40-40E2-B8C7-427443B4659E}|Lighting\\Lighting.csproj|c:\\ipl\\3ano1s\\is\\projeto\\solutionsomiod\\lighting\\form_lighting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F43F68DD-DD40-40E2-B8C7-427443B4659E}|Lighting\\Lighting.csproj|solutionrelative:lighting\\form_lighting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F43F68DD-DD40-40E2-B8C7-427443B4659E}|Lighting\\Lighting.csproj|c:\\ipl\\3ano1s\\is\\projeto\\solutionsomiod\\lighting\\form_lighting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F43F68DD-DD40-40E2-B8C7-427443B4659E}|Lighting\\Lighting.csproj|solutionrelative:lighting\\form_lighting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Resources.Designer.cs",
+              "DocumentMoniker": "C:\\IPL\\3ano1S\\IS\\projeto\\SolutionSomiod\\Lighting\\Properties\\Resources.Designer.cs",
+              "RelativeDocumentMoniker": "Lighting\\Properties\\Resources.Designer.cs",
+              "ToolTip": "C:\\IPL\\3ano1S\\IS\\projeto\\SolutionSomiod\\Lighting\\Properties\\Resources.Designer.cs",
+              "RelativeToolTip": "Lighting\\Properties\\Resources.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-30T18:49:52.598Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Form_Lighting.cs",
+              "DocumentMoniker": "C:\\IPL\\3ano1S\\IS\\projeto\\SolutionSomiod\\Lighting\\Form_Lighting.cs",
+              "RelativeDocumentMoniker": "Lighting\\Form_Lighting.cs",
+              "ToolTip": "C:\\IPL\\3ano1S\\IS\\projeto\\SolutionSomiod\\Lighting\\Form_Lighting.cs",
+              "RelativeToolTip": "Lighting\\Form_Lighting.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABsAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-30T17:02:12.608Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form_Lighting.cs [Design]",
+              "DocumentMoniker": "C:\\IPL\\3ano1S\\IS\\projeto\\SolutionSomiod\\Lighting\\Form_Lighting.cs",
+              "RelativeDocumentMoniker": "Lighting\\Form_Lighting.cs",
+              "ToolTip": "C:\\IPL\\3ano1S\\IS\\projeto\\SolutionSomiod\\Lighting\\Form_Lighting.cs [Design]",
+              "RelativeToolTip": "Lighting\\Form_Lighting.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-30T16:04:37.919Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -5,6 +5,8 @@ VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Somiod", "Somiod\Somiod.csproj", "{131432F5-84A9-42FA-9510-F5CF03F809C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lighting", "Lighting\Lighting.csproj", "{F43F68DD-DD40-40E2-B8C7-427443B4659E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{131432F5-84A9-42FA-9510-F5CF03F809C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{131432F5-84A9-42FA-9510-F5CF03F809C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{131432F5-84A9-42FA-9510-F5CF03F809C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F43F68DD-DD40-40E2-B8C7-427443B4659E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F43F68DD-DD40-40E2-B8C7-427443B4659E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F43F68DD-DD40-40E2-B8C7-427443B4659E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F43F68DD-DD40-40E2-B8C7-427443B4659E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

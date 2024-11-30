@@ -38,7 +38,7 @@ CREATE TABLE [dbo].[notification] (
     PRIMARY KEY CLUSTERED ([id] ASC),
     UNIQUE NONCLUSTERED ([name] ASC),
     CONSTRAINT [FK_Notification_Container] FOREIGN KEY ([parent]) REFERENCES [dbo].[container] ([id]),
-    CHECK ([event]=(3) OR [event]=(2) OR [event]=(1))
+    CHECK ([event]=(2) OR [event]=(1))
 );
 
 
