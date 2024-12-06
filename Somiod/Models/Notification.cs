@@ -7,14 +7,15 @@ namespace Somiod.Models
 {
     public class Notification
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public DateTime Creation_datetime { get; set; }
-        public int Parent { get; set; }
-        public int Event_BD { get; set; }
-        public string Endpoint { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public DateTime creation_datetime { get; set; }
+        public int parent { get; set; }
+        public byte @event { get; set; }
+        public string endpoint { get; set; }
 
-        public int Enabled { get; set; }
+        public int enabled { get; set; }
+        public string res_type { get; set; }
 
     }
 }
