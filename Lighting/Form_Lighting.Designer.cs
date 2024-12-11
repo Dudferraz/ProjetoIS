@@ -55,6 +55,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_Lighting";
             this.Text = "Lighting";
+            this.Load += new System.EventHandler(this.Form_Lighting_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLightBulb)).EndInit();
             this.ResumeLayout(false);
 

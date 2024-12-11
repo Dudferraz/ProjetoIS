@@ -385,7 +385,7 @@ namespace Somiod.Controllers
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
 

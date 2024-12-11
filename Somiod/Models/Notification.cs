@@ -14,7 +14,7 @@ namespace Somiod.Models
         public byte @event { get; set; }
         public string endpoint { get; set; }
 
-        public int enabled { get; set; }
+        public int enabled { get; set; } //devia ser bit
         public string res_type { get; set; }
 
     }
