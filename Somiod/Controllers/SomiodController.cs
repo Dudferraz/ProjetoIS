@@ -255,7 +255,7 @@ namespace Somiod.Controllers
         }
 
         [HttpGet]
-        [Route("api/somiod/{app_name}/{cont_name}/notification/{data_name}")]
+        [Route("api/somiod/{app_name}/{cont_name}/notif/{data_name}")]
         public IHttpActionResult GetNotification(string app_name, string cont_name, string data_name) //antonio
         {
             try
@@ -320,23 +320,56 @@ namespace Somiod.Controllers
                 string query = "INSERT INTO application(name, creation_datetime ) VALUES (@name, @date);";
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
+                    bool nomeRepetido = false;
+                    int maxId = 0;
+                    string nome_app_mudado = null;
                     connection.Open();
                     //if (funAuxiliares.CheckNameExist(value.name, connection))
                     if (CheckNameExist(value.name, connection))
                     {
-                        return BadRequest();
+                        nomeRepetido = true;
                     }
 
 
                     SqlCommand sqlCommand = new SqlCommand(query, connection);
-                    sqlCommand.Parameters.AddWithValue("@name", value.name);
+
+                    if (nomeRepetido)
+                    {
+                        string querySelect = "SELECT MAX(Id) AS ID FROM application";
+                        SqlCommand commandSelect = new SqlCommand(querySelect, connection);
+                        SqlDataReader reader = commandSelect.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            maxId = (int)reader["ID"];
+                        }
+                        reader.Close();
+                        nome_app_mudado = value.name + "_application_" + maxId;
+                        sqlCommand.Parameters.AddWithValue("@name", nome_app_mudado);
+                    }
+                    else
+                    {
+                        sqlCommand.Parameters.AddWithValue("@name", value.name);
+                    }
+
+                    
+                    
                     sqlCommand.Parameters.AddWithValue("@date", DateTime.Now);
 
 
                     int rows = sqlCommand.ExecuteNonQuery();
                     if (rows > 0)
                     {
-                        return Ok();
+                        /*string queryApp = "SELECT * FROM application WHERE Name= @name;";
+                        SqlCommand commandSelectApp = new SqlCommand(queryApp, connection);
+                        commandSelectApp.Parameters.AddWithValue("@name", nome_app_mudado);
+                        SqlDataReader reader = commandSelectApp.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            maxId = (int)reader["ID"];
+                        }
+                        reader.Close();*/
+                        Application app_nova = SelectBDApplication(nome_app_mudado, connection);
+                        return Ok(app_nova);
                     }
                     return BadRequest();
                 }
@@ -361,15 +394,40 @@ namespace Somiod.Controllers
 
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
+                    bool nomeRepetido = false;
+                    int maxId = 0;
+                    string nome_real = null;
+
                     conn.Open();
-                    SqlCommand command = new SqlCommand(query, conn);
 
                     //if (funAuxiliares.CheckNameExist(value.name, conn))
                     if (CheckNameExist(value.name, conn))
                     {
-                        return BadRequest();
+                        nomeRepetido = true;
                     }
-                    command.Parameters.AddWithValue("@name", value.name);
+
+                    SqlCommand command = new SqlCommand(query, conn);
+
+
+                    if (nomeRepetido)
+                    {
+                        string querySelect = "SELECT MAX(Id) AS ID FROM container";
+                        SqlCommand commandSelect = new SqlCommand(querySelect, conn);
+                        SqlDataReader reader = commandSelect.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            maxId = (int)reader["ID"];
+                        }
+                        reader.Close();
+                        nome_real = value.name + "_container_" + maxId;
+                        command.Parameters.AddWithValue("@name", nome_real);
+                    }
+                    else
+                    {
+                        nome_real = value.name;
+                        command.Parameters.AddWithValue("@name", nome_real);
+                    }
+
                     command.Parameters.AddWithValue("@date", DateTime.Now);
 
                     //app = funAuxiliares.SelectBDApplication(app_name, conn);
@@ -386,7 +444,8 @@ namespace Somiod.Controllers
 
                     if (rowsAffected > 0)
                     {
-                        return Ok();
+                        Container cont_novo_mudado = SelectBDContainer(nome_real, conn);
+                        return Ok(cont_novo_mudado);
                     }
                     else
                     {
@@ -405,7 +464,7 @@ namespace Somiod.Controllers
         }
 
         [HttpPost]
-        [Route("api/somiod/{app_name}/{cont_name}/notification")]
+        [Route("api/somiod/{app_name}/{cont_name}/notif")]
         //o container é como exemplo mudar depois
         public IHttpActionResult PostNotification(String app_name, String cont_name, [FromBody] Notification value) //ricardo, este ta com problemas
         {
@@ -418,10 +477,14 @@ namespace Somiod.Controllers
                 {
                     connection.Open();
 
+                    bool nomeRepetido = false;
+                    int maxId = 0;
+                    string nome_real = null;
+
                     //if (funAuxiliares.CheckNameExist(value.name, connection))
                     if (CheckNameExist(value.name, connection))
                     {
-                        return BadRequest();
+                        nomeRepetido = true;
                     }
 
                     //Application app = funAuxiliares.SelectBDApplication(app_name, connection); //procura application
@@ -451,7 +514,26 @@ namespace Somiod.Controllers
 
                     SqlCommand sqlCommand = new SqlCommand(query, connection);
                     Console.WriteLine("Endpoint: " + value);
-                    sqlCommand.Parameters.AddWithValue("@name", value.name);
+
+                    if (nomeRepetido)
+                    {
+                        string querySelect = "SELECT MAX(Id) AS ID FROM notification";
+                        SqlCommand commandSelect = new SqlCommand(querySelect, connection);
+                        SqlDataReader reader = commandSelect.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            maxId = (int)reader["ID"];
+                        }
+                        reader.Close();
+                        nome_real = value.name + "_notification_" + maxId;
+                        sqlCommand.Parameters.AddWithValue("@name", nome_real);
+                    }
+                    else
+                    {
+                        nome_real = value.name;
+                        sqlCommand.Parameters.AddWithValue("@name", nome_real);
+                    }
+
                     sqlCommand.Parameters.AddWithValue("@creation_datetime", DateTime.Now);
                     sqlCommand.Parameters.AddWithValue("@parent", cont.id);
                     sqlCommand.Parameters.AddWithValue("@newEvent", value.@event);
@@ -470,7 +552,8 @@ namespace Somiod.Controllers
                     int rows = sqlCommand.ExecuteNonQuery();
                     if (rows > 0)
                     {
-                        return Ok();
+                        Notification notification = SelectBDNotification(nome_real, connection);
+                        return Ok(notification);
                     }
 
 
@@ -499,11 +582,14 @@ namespace Somiod.Controllers
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
+                    bool nomeRepetido = false;
+                    int maxId = 0;
+                    string nome_real = null;
 
                     //if (funAuxiliares.CheckNameExist(value.name, connection))
                     if (CheckNameExist(value.name, connection))
                     {
-                        return BadRequest();
+                        nomeRepetido = true;
                     }
 
                     //Application app = funAuxiliares.SelectBDApplication(app_name, connection); //procura application
@@ -533,7 +619,25 @@ namespace Somiod.Controllers
 
                     SqlCommand sqlCommand = new SqlCommand(query, connection);
 
-                    sqlCommand.Parameters.AddWithValue("@name", value.name);
+                    if (nomeRepetido)
+                    {
+                        string querySelect = "SELECT MAX(Id) AS ID FROM record";
+                        SqlCommand commandSelect = new SqlCommand(querySelect, connection);
+                        SqlDataReader reader = commandSelect.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            maxId = (int)reader["ID"];
+                        }
+                        reader.Close();
+                        nome_real = value.name + "_record_" + maxId;
+                        sqlCommand.Parameters.AddWithValue("@name", nome_real);
+                    }
+                    else
+                    {
+                        nome_real = value.name;
+                        sqlCommand.Parameters.AddWithValue("@name", value.name);
+                    }
+
                     sqlCommand.Parameters.AddWithValue("@creation_datetime", DateTime.Now);
                     sqlCommand.Parameters.AddWithValue("@parent", cont.id);
                     sqlCommand.Parameters.AddWithValue("@content", value.content);
@@ -541,8 +645,9 @@ namespace Somiod.Controllers
                     int rows = sqlCommand.ExecuteNonQuery();
                     if (rows > 0)
                     {
+                        Record record_novo = SelectBDRecord(nome_real, connection);
                         PublishMessageAsync(value.content, cont_name, 1);
-                        return Ok();
+                        return Ok(record_novo);
                     }
 
 
@@ -761,7 +866,7 @@ namespace Somiod.Controllers
             }
         }
         [HttpDelete]
-        [Route("api/somiod/{app_name}/{cont_name}/notification/{data_name}")]
+        [Route("api/somiod/{app_name}/{cont_name}/notif/{data_name}")]
         public IHttpActionResult DeleteNotification(String app_name, String cont_name, String data_name)//ricardo
         {
 
