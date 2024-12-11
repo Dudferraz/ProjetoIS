@@ -10,12 +10,20 @@ using System.Data.SqlClient;
 using System.Xml;
 using Newtonsoft.Json.Linq;
 using System.Runtime.Remoting.Messaging;
+using uPLibrary.Networking.M2Mqtt;
+using uPLibrary.Networking.M2Mqtt.Messages;
+//using MQTTnet;
+//using MQTTnet.Client;
 using Somiod.FuncoesAux;
+using System.Threading.Tasks;
+using System.Net.Http;
+using RestSharp;
+using System.Text;
 
 namespace Somiod.Controllers
 {
 
-    
+
     public class SomiodController : ApiController
     {
         string connectionString = Properties.Settings.Default.ConnString;
@@ -26,7 +34,7 @@ namespace Somiod.Controllers
         public IHttpActionResult GetAllApplications() //antonio
         {
             if (Request.Headers.Contains("somiod-locate"))
-            {   
+            {
                 if (Request.Headers.GetValues("somiod-locate").Contains("application"))
                 {
 
@@ -40,7 +48,7 @@ namespace Somiod.Controllers
                     return BadRequest("Invalid Paramenter in somiod-locate");
                 }
             }
-            
+
 
 
             try
@@ -106,7 +114,7 @@ namespace Somiod.Controllers
 
                 if (Request.Headers.GetValues("somiod-locate").Contains("notification"))
                 {
-                    
+
                     //return funAuxiliares.GetNotificationName(app_name);
                     return GetNotificationName(app_name);
                 }
@@ -177,7 +185,7 @@ namespace Somiod.Controllers
                         return NotFound();
                     }
 
-                    
+
 
                     return Ok(cont);
                 }
@@ -235,7 +243,7 @@ namespace Somiod.Controllers
                     }
 
                     return Ok(record);
-
+                 
 
                 }
             }
@@ -346,14 +354,14 @@ namespace Somiod.Controllers
         {
             try
             {
-                
+
                 string query = "Insert Into container(name, creation_datetime, parent) Values (@name, @date, @parent);";
                 Application app = null;
                 Console.WriteLine(value);
-                
+
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                                       conn.Open();
+                    conn.Open();
                     SqlCommand command = new SqlCommand(query, conn);
 
                     //if (funAuxiliares.CheckNameExist(value.name, conn))
@@ -367,7 +375,8 @@ namespace Somiod.Controllers
                     //app = funAuxiliares.SelectBDApplication(app_name, conn);
                     app = SelectBDApplication(app_name, conn);
 
-                    if (app == null) {
+                    if (app == null)
+                    {
                         //a aplicação nao foi encontrada
                         return NotFound();
                     }
@@ -385,7 +394,7 @@ namespace Somiod.Controllers
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
 
@@ -482,6 +491,8 @@ namespace Somiod.Controllers
         public IHttpActionResult PostRecord(string app_name, string cont_name, [FromBody] Record value) //antonio
         {
 
+            Console.WriteLine(value.name);
+
             try
             {
 
@@ -521,15 +532,16 @@ namespace Somiod.Controllers
 
 
                     SqlCommand sqlCommand = new SqlCommand(query, connection);
-                    
+
                     sqlCommand.Parameters.AddWithValue("@name", value.name);
                     sqlCommand.Parameters.AddWithValue("@creation_datetime", DateTime.Now);
                     sqlCommand.Parameters.AddWithValue("@parent", cont.id);
                     sqlCommand.Parameters.AddWithValue("@content", value.content);
-                    
+
                     int rows = sqlCommand.ExecuteNonQuery();
                     if (rows > 0)
                     {
+                        PublishMessageAsync(value.content, cont_name, 1);
                         return Ok();
                     }
 
@@ -870,6 +882,7 @@ namespace Somiod.Controllers
                     int rows = sqlCommand.ExecuteNonQuery();
                     if (rows > 0)
                     {
+                        PublishMessageAsync(record.content, cont_name, 2);
                         return Ok();
                     }
                     return InternalServerError();
@@ -1195,5 +1208,131 @@ namespace Somiod.Controllers
             }
         }
 
+        private void PublishMessageAsync(String record, String contName, int eventType)
+        {
+
+            
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                Container cont = SelectBDContainer(contName, connection);
+                List<Notification> notifications = new List<Notification>();
+                string recordQuery = "SELECT * FROM notification WHERE Parent = @container_id";
+
+
+                SqlCommand recordCommand = new SqlCommand(recordQuery, connection);
+                recordCommand.Parameters.AddWithValue("@container_id", cont.id);
+
+                using (SqlDataReader recordReader = recordCommand.ExecuteReader())
+                {
+                    while (recordReader.Read())
+                    {
+                        Notification notification = new Notification
+                        {
+                            @event = (byte)recordReader["Event"],
+                            endpoint = (string)recordReader["Endpoint"],
+                        };
+                        notifications.Add(notification);
+                    }
+                }
+
+
+
+                if (!notifications.Any())
+                {
+                    return;
+                }
+
+                // Criação das listas separadas
+                List<Notification> listMqtt = new List<Notification>();
+                List<Notification> listHttp = new List<Notification>();
+
+                // Separar os endpoints nas listas apropriadas
+                foreach (Notification notification in notifications)
+                {
+                    if (eventType != notification.@event)
+                    {
+                        continue;
+                    }
+
+                    if (notification.endpoint.StartsWith("mqtt://"))
+                    {
+                        listMqtt.Add(notification); // Adiciona na lista MQTT
+                    }
+                    else if (notification.endpoint.StartsWith("http://"))
+                    {
+                        listHttp.Add(notification); // Adiciona na lista HTTP
+                    }
+                }
+
+
+                // Processar mensagens para MQTT
+                HashSet<string> processedEndpointsMqtt = new HashSet<string>();
+                foreach (Notification notification in listMqtt)
+                {
+
+                    if (processedEndpointsMqtt.Contains(notification.endpoint))
+                    {
+                        continue; // Ignora endpoints duplicados
+                    }
+
+                    processedEndpointsMqtt.Add(notification.endpoint);
+
+                    string cleanedEndpoint = notification.endpoint.Replace("mqtt://", "");
+
+                    MqttClient mClient = new MqttClient(cleanedEndpoint);
+
+                    mClient.Connect(Guid.NewGuid().ToString());
+
+                    if (!mClient.IsConnected)
+                    {
+                        return;
+                    }
+
+                    var mensagem = Encoding.UTF8.GetBytes(record);
+                    Console.WriteLine(mensagem);
+
+                    if (mClient.IsConnected)
+                    {
+                        mClient.Publish(contName, mensagem);
+                    }
+
+          
+
+                    mClient.Disconnect();
+
+
+                }
+
+
+                HashSet<string> processedEndpointsHttp = new HashSet<string>();
+                foreach (Notification notification in listHttp)
+                {
+                    if (processedEndpointsHttp.Contains(notification.endpoint))
+                    {
+                        continue; // Ignora endpoints duplicados
+                    }
+
+                    processedEndpointsHttp.Add(notification.endpoint);
+
+
+                    RestClient client = null;
+                    client = new RestClient(notification.endpoint);
+
+                    RestRequest request = new RestRequest("", Method.Post);
+                    request.RequestFormat = DataFormat.Xml;
+
+                    request.AddObject(record);
+
+                    var response = client.Execute(request);
+
+                    Console.WriteLine(response.Content);
+
+
+                }
+            }
+        }
     }
 }
