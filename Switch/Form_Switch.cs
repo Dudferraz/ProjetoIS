@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using RestSharp;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Switch.Models;
+using System.Xml;
 
 namespace Switch
 {
@@ -39,16 +40,29 @@ namespace Switch
 
             RestRequest request = new RestRequest("api/somiod", Method.Post);
             request.RequestFormat = DataFormat.Xml;
+            request.AddHeader("Accept", "application/xml");
 
             request.AddObject(app);
             var response = client.Execute(request);
+
+            string xmlContent = response.Content;
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.LoadXml(xmlContent);
+
+            XmlNamespaceManager namespaceManager = new XmlNamespaceManager(xmlDoc.NameTable);
+            namespaceManager.AddNamespace("default", "http://schemas.datacontract.org/2004/07/Somiod.Models");
+
+            XmlNode nameNode = xmlDoc.SelectSingleNode("/default:Application/default:name", namespaceManager);
+
+            string app_name = nameNode?.InnerText;
+
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                MessageBox.Show("App created!");
+                MessageBox.Show($"Switch App created with name: {app_name}");
             }
             else
             {
-                MessageBox.Show($"Unable to create app: {response.StatusDescription}");
+                MessageBox.Show($"Unable to create switch app: {response.StatusDescription}");
             }
 
         }
@@ -69,11 +83,11 @@ namespace Switch
             var response = client.Execute(request);
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                MessageBox.Show("record created!");
+                MessageBox.Show("On record created!");
             }
             else
             {
-                MessageBox.Show($"Unable to create record: {response.StatusDescription}");
+                MessageBox.Show($"Unable to create on record: {response.StatusDescription}");
             }
         }
 
@@ -94,11 +108,11 @@ namespace Switch
             var response = client.Execute(request);
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                MessageBox.Show("record created!");
+                MessageBox.Show("Off record created!");
             }
             else
             {
-                MessageBox.Show($"Unable to create record: {response.StatusDescription}");
+                MessageBox.Show($"Unable to create off record: {response.StatusDescription}");
             }
         }
 

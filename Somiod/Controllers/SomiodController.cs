@@ -368,7 +368,7 @@ namespace Somiod.Controllers
                             maxId = (int)reader["ID"];
                         }
                         reader.Close();*/
-                        Application app_nova = SelectBDApplication(nome_app_mudado, connection);
+                        Application app_nova = SelectBDApplication(nomeRepetido == true ? nome_app_mudado : value.name, connection);
                         return Ok(app_nova);
                     }
                     return BadRequest();

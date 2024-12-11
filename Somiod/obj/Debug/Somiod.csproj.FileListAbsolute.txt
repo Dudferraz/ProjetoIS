@@ -174,3 +174,5 @@ C:\IS\ProjetoIS\Somiod\bin\System.Text.Encodings.Web.xml
 C:\IS\ProjetoIS\Somiod\bin\System.Text.Json.xml
 C:\IS\ProjetoIS\Somiod\bin\System.Threading.Tasks.Extensions.xml
 C:\IS\ProjetoIS\Somiod\bin\System.ValueTuple.xml
+C:\IPL\3ano1S\IS\projeto\SolutionSomiod\Somiod\bin\M2Mqtt.Net.dll
+C:\IPL\3ano1S\IS\projeto\SolutionSomiod\Somiod\bin\M2Mqtt.Net.pdb
