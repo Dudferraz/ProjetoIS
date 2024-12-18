@@ -15,12 +15,15 @@ using RestSharp;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Switch.Models;
 using System.Xml;
+using System.Web.UI.WebControls;
 
 namespace Switch
 {
     public partial class Form_Switch : Form
     {
-        string baseURI = @"http://localhost:58225/"; //TODO: needs to be updated!
+        string baseURI = Properties.Settings.Default.RestApi; 
+        string variable_app = "Lighting";
+        string variable_cont = "light_bulb";
 
         RestClient client = null;
         public Form_Switch()
@@ -76,7 +79,7 @@ namespace Switch
                 res_type = "record"
             };
 
-            RestRequest request = new RestRequest("api/somiod/lighting/light_bulb/record", Method.Post);
+            RestRequest request = new RestRequest($"api/somiod/{variable_app}/{variable_cont}/record", Method.Post);
             request.RequestFormat = DataFormat.Xml;
 
             request.AddObject(record);
@@ -101,7 +104,7 @@ namespace Switch
                 res_type = "record"
             };
 
-            RestRequest request = new RestRequest("api/somiod/lighting/light_bulb/record", Method.Post);
+            RestRequest request = new RestRequest($"api/somiod/{variable_app}/{variable_cont}/record", Method.Post);
             request.RequestFormat = DataFormat.Xml;
 
             request.AddObject(record);
@@ -116,7 +119,11 @@ namespace Switch
             }
         }
 
-
+        private void button_submit_Click(object sender, EventArgs e)
+        {
+            variable_app = textBox_app.Text;
+            variable_cont = textBox_cont.Text;
+        }
     }
 }
 

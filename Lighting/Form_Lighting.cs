@@ -19,8 +19,7 @@ namespace Lighting
     public partial class Form_Lighting : Form
     {
         private bool isLightOn = false;
-        string baseURI = Properties.Settings.Default.RestApi; 
-      
+        string baseURI = Properties.Settings.Default.RestApi;
 
         RestClient client = null;
         public Form_Lighting()
@@ -130,6 +129,11 @@ namespace Lighting
             {
                 MessageBox.Show($"Unable to create light bulb notification: {response.StatusDescription}");
             }
+
+            string variableApp = "App: "+app_name;
+            string variableCont = "Container: "+cont_name;
+            label_app.Text = variableApp;
+            label_cont.Text = variableCont;
 
 
         }
