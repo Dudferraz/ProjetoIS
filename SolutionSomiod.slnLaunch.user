@@ -1,0 +1,25 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Name": "DashboardForm\\DashboardForm.csproj",
+        "Action": "Start",
+        "DebugTarget": ""
+      },
+      {
+        "Name": "Somiod\\Somiod.csproj",
+        "Action": "Start",
+        "DebugTarget": ""
+      },
+      {
+        "Name": "Lighting\\Lighting.csproj",
+        "Action": "Start"
+      },
+      {
+        "Name": "Switch\\Switch.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

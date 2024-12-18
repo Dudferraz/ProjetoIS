@@ -16,7 +16,6 @@ using uPLibrary.Networking.M2Mqtt.Messages;
 //using MQTTnet.Client;
 using Somiod.FuncoesAux;
 using System.Threading.Tasks;
-using System.Net.Http;
 using RestSharp;
 using System.Text;
 
@@ -711,6 +710,7 @@ namespace Somiod.Controllers
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
+                    
                     if (value.name != null)
                     {
                         //if (funAuxiliares.CheckNameExist(value.name, connection))
