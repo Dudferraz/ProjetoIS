@@ -39,3 +39,34 @@ C:\IPL\3ano1S\IS\projeto\SolutionSomiod\Lighting\bin\Debug\System.Text.Json.xml
 C:\IPL\3ano1S\IS\projeto\SolutionSomiod\Lighting\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\IPL\3ano1S\IS\projeto\SolutionSomiod\Lighting\bin\Debug\System.ValueTuple.xml
 C:\IPL\3ano1S\IS\projeto\SolutionSomiod\Lighting\obj\Debug\Lighting.csproj.Up2Date
+C:\Users\Rodrigo\Desktop\printHelloWorld\Integracao de sistemas\PROJETO\ProjetoIS\Lighting\bin\Debug\Lighting.exe.config
+C:\Users\Rodrigo\Desktop\printHelloWorld\Integracao de sistemas\PROJETO\ProjetoIS\Lighting\bin\Debug\Lighting.exe
+C:\Users\Rodrigo\Desktop\printHelloWorld\Integracao de sistemas\PROJETO\ProjetoIS\Lighting\bin\Debug\Lighting.pdb
+C:\Users\Rodrigo\Desktop\printHelloWorld\Integracao de sistemas\PROJETO\ProjetoIS\Lighting\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\Rodrigo\Desktop\printHelloWorld\Integracao de sistemas\PROJETO\ProjetoIS\Lighting\bin\Debug\RestSharp.dll
+C:\Users\Rodrigo\Desktop\printHelloWorld\Integracao de sistemas\PROJETO\ProjetoIS\Lighting\bin\Debug\System.Buffers.dll
+C:\Users\Rodrigo\Desktop\printHelloWorld\Integracao de sistemas\PROJETO\ProjetoIS\Lighting\bin\Debug\System.Memory.dll
+C:\Users\Rodrigo\Desktop\printHelloWorld\Integracao de sistemas\PROJETO\ProjetoIS\Lighting\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Rodrigo\Desktop\printHelloWorld\Integracao de sistemas\PROJETO\ProjetoIS\Lighting\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Rodrigo\Desktop\printHelloWorld\Integracao de sistemas\PROJETO\ProjetoIS\Lighting\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\Rodrigo\Desktop\printHelloWorld\Integracao de sistemas\PROJETO\ProjetoIS\Lighting\bin\Debug\System.Text.Json.dll
+C:\Users\Rodrigo\Desktop\printHelloWorld\Integracao de sistemas\PROJETO\ProjetoIS\Lighting\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\Rodrigo\Desktop\printHelloWorld\Integracao de sistemas\PROJETO\ProjetoIS\Lighting\bin\Debug\System.ValueTuple.dll
+C:\Users\Rodrigo\Desktop\printHelloWorld\Integracao de sistemas\PROJETO\ProjetoIS\Lighting\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\Rodrigo\Desktop\printHelloWorld\Integracao de sistemas\PROJETO\ProjetoIS\Lighting\bin\Debug\RestSharp.xml
+C:\Users\Rodrigo\Desktop\printHelloWorld\Integracao de sistemas\PROJETO\ProjetoIS\Lighting\bin\Debug\System.Buffers.xml
+C:\Users\Rodrigo\Desktop\printHelloWorld\Integracao de sistemas\PROJETO\ProjetoIS\Lighting\bin\Debug\System.Memory.xml
+C:\Users\Rodrigo\Desktop\printHelloWorld\Integracao de sistemas\PROJETO\ProjetoIS\Lighting\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\Rodrigo\Desktop\printHelloWorld\Integracao de sistemas\PROJETO\ProjetoIS\Lighting\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Rodrigo\Desktop\printHelloWorld\Integracao de sistemas\PROJETO\ProjetoIS\Lighting\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\Rodrigo\Desktop\printHelloWorld\Integracao de sistemas\PROJETO\ProjetoIS\Lighting\bin\Debug\System.Text.Json.xml
+C:\Users\Rodrigo\Desktop\printHelloWorld\Integracao de sistemas\PROJETO\ProjetoIS\Lighting\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\Rodrigo\Desktop\printHelloWorld\Integracao de sistemas\PROJETO\ProjetoIS\Lighting\bin\Debug\System.ValueTuple.xml
+C:\Users\Rodrigo\Desktop\printHelloWorld\Integracao de sistemas\PROJETO\ProjetoIS\Lighting\obj\Debug\Lighting.csproj.AssemblyReference.cache
+C:\Users\Rodrigo\Desktop\printHelloWorld\Integracao de sistemas\PROJETO\ProjetoIS\Lighting\obj\Debug\Lighting.Form_Lighting.resources
+C:\Users\Rodrigo\Desktop\printHelloWorld\Integracao de sistemas\PROJETO\ProjetoIS\Lighting\obj\Debug\Lighting.Properties.Resources.resources
+C:\Users\Rodrigo\Desktop\printHelloWorld\Integracao de sistemas\PROJETO\ProjetoIS\Lighting\obj\Debug\Lighting.csproj.GenerateResource.cache
+C:\Users\Rodrigo\Desktop\printHelloWorld\Integracao de sistemas\PROJETO\ProjetoIS\Lighting\obj\Debug\Lighting.csproj.CoreCompileInputs.cache
+C:\Users\Rodrigo\Desktop\printHelloWorld\Integracao de sistemas\PROJETO\ProjetoIS\Lighting\obj\Debug\Lighting.csproj.Up2Date
+C:\Users\Rodrigo\Desktop\printHelloWorld\Integracao de sistemas\PROJETO\ProjetoIS\Lighting\obj\Debug\Lighting.exe
+C:\Users\Rodrigo\Desktop\printHelloWorld\Integracao de sistemas\PROJETO\ProjetoIS\Lighting\obj\Debug\Lighting.pdb
